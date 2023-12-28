@@ -29,4 +29,4 @@ const container = React.createElement(
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(container);
 
-console.log('')
+console.log('Created a feature branch')
