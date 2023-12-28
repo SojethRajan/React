@@ -1,10 +1,6 @@
-const container = React.createElement(
-    'div',
-    {
-        id : 'contaier'
-    },
-    'hello div'
-)
+import React from "react";
+import ReactDOM from "react-dom/client";          
+
 const heading1 = React.createElement(
     'h1',
     {
@@ -14,13 +10,23 @@ const heading1 = React.createElement(
     'Hello React'
     );
 
-const heading2 = React.createElement(
+const paragraph = React.createElement(
     'p',
     {
         id : 'title'
     },
-    'Hello heading2'
+    'Hello paragraph'
     );
 
+
+const container = React.createElement(
+    'div',
+    {
+        id : 'contaier'
+    },
+    [heading1,paragraph]
+)
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render([container,heading1,heading2]);
+root.render(container);
+
+console.log('')
