@@ -5844,3 +5844,4 @@ dist/index.html
 .parcel-cache/lock.mdb
 node_modules/@parcel/core/test/fixtures/glob-like/[entry].js
 node_modules/@parcel/core/test/fixtures/glob-like/[entry].js
+node_modules
