@@ -18,7 +18,6 @@ const Footer = () => (
     <h1>This is the Footer</h1>
 )
 
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render([<Header/>, <Footer/>]);
 
