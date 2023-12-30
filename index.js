@@ -9,13 +9,10 @@ const Header = () => {
                 <li>Home</li>
                 <li>About</li>
                 <li>Help</li>
-                <li>{variable}</li>
             </ul>
         </div>
     )
 }
-
-const variable = 12;
 
 const Footer = () => (
     <h1>This is the Footer</h1>
