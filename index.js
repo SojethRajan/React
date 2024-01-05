@@ -53,8 +53,7 @@ const MenuCards = [
         cusine : ['American','Burger'],
         dish : 'Hybrid burger',
         rating : 4.7
-    },
-    
+    },  
 ]
 
 const RestaurantCard = ({imgSource,name,price,cusine,dish,rating}) => {   
