@@ -1,12 +1,12 @@
-export const RestaurantCard = ({imgSource,name,price,cusine,dish,rating}) => {   
+import { IMAGE_BASE_URL } from "../config"
+
+export const RestaurantCard = ({cloudinaryImageId,name,cuisines,avgRating}) => {   
     return(
         <div className="menuCards">
-            <img src= {imgSource} className="images"/>
+            <img src= {IMAGE_BASE_URL + cloudinaryImageId} className="images"/>
             <h2>{name}</h2>
-            <h3>Cost : {price}</h3>
-            <p>Cusine : {cusine.join(', ')}</p>
-            <p>Item : {dish}</p>
-            <p>Ratings : {rating}</p>
+            <p>Cusine : {cuisines.join(', ')}</p>
+            <p>Ratings : {avgRating}</p>
         </div>
     )
 }

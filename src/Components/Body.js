@@ -1,10 +1,10 @@
-import { MenuCards } from "../config";
+import { MenuCards, RESTAURANTS_LIST } from "../config";
 import { RestaurantCard } from "./RestaurantCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const onSearch = (searchText,Menu) => {
     let filteredData = Menu.filter((menu) => 
-        menu.name.includes(searchText)
+        menu.info.name.toLowerCase().includes(searchText.toLowerCase())
     )
     return filteredData;
 }
@@ -12,6 +12,18 @@ const onSearch = (searchText,Menu) => {
 const Body = () => {
     const [searchText, setSearchText] = useState();
     const [Menu, setMenu] = useState(MenuCards);
+
+    useEffect(() => {
+        getRestaurantsList();
+    },[])
+
+    async function getRestaurantsList(){
+        const data = await fetch(RESTAURANTS_LIST);
+        const json = await data.json();
+        setMenu(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
+        return json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants;
+    }
+
     return(
         <>
             <div>
@@ -22,7 +34,7 @@ const Body = () => {
                     value={searchText}
                     onChange={(e) => {
                         setSearchText(e.target.value)
-                        setMenu(MenuCards)
+                        
                     }}
                     >
                 </input>
@@ -37,7 +49,7 @@ const Body = () => {
             <div className="restaurantCard">
             {
                 Menu.map(menuCard => {
-                    return<RestaurantCard {...menuCard} key={menuCard.id}/>
+                    return<RestaurantCard {...menuCard.info} key={menuCard.info.id}/>
                 })
             }
             </div>
