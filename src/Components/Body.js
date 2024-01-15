@@ -1,30 +1,37 @@
-import { MenuCards, RESTAURANTS_LIST } from "../config";
+import { RESTAURANTS_LIST_URL } from "../config";
 import { RestaurantCard } from "./RestaurantCard";
 import { useEffect, useState } from "react";
+import ShimmerUi from "./ShimmerUi";
 
 const onSearch = (searchText,Menu) => {
     let filteredData = Menu.filter((menu) => 
-        menu.info.name.toLowerCase().includes(searchText.toLowerCase())
+        menu?.info?.name?.toLowerCase().includes(searchText?.toLowerCase())
     )
     return filteredData;
 }
 
 const Body = () => {
     const [searchText, setSearchText] = useState();
-    const [Menu, setMenu] = useState(MenuCards);
+    const [Menu, setMenu] = useState([]);
+    const [filteredMenu, setfilteredMenu] = useState();
 
     useEffect(() => {
         getRestaurantsList();
     },[])
 
     async function getRestaurantsList(){
-        const data = await fetch(RESTAURANTS_LIST);
+        const data = await fetch(RESTAURANTS_LIST_URL);
         const json = await data.json();
-        setMenu(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
-        return json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants;
+        setMenu(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setfilteredMenu(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     }
-
-    return(
+    
+    if(filteredMenu?.length === 0){
+        console.log('here')
+        return <h2>NO restaurants Found</h2>
+    }
+    
+    return (Menu?.length === 0) ? <ShimmerUi/> : (
         <>
             <div>
                 <input 
@@ -33,8 +40,7 @@ const Body = () => {
                     placeholder="search" 
                     value={searchText}
                     onChange={(e) => {
-                        setSearchText(e.target.value)
-                        
+                        setSearchText(e.target.value) 
                     }}
                     >
                 </input>
@@ -42,13 +48,13 @@ const Body = () => {
                     className="searh-btn"
                     onClick={() => {
                         const filteredData = onSearch(searchText,Menu);
-                        setMenu(filteredData);
+                        setfilteredMenu(filteredData);
                     }}
                     >search</button>
             </div>
             <div className="restaurantCard">
             {
-                Menu.map(menuCard => {
+                filteredMenu.map(menuCard => {
                     return<RestaurantCard {...menuCard.info} key={menuCard.info.id}/>
                 })
             }

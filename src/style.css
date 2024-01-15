@@ -36,3 +36,37 @@
 .images {
     width: 200px;
 }
+
+.shimmer-menu-cards {
+    width: 200px;
+    height: 200px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid black;
+    border-radius: 6px;
+    padding: 10px;
+    margin: 10px;
+}
+.shimmer-image-card {
+    width: 100px;
+    height: 100px;
+    background-color: rgb(194, 194, 194);
+    border-radius: 6px;
+    margin: 2px;
+}
+.shimmer-content-card {
+    width: 180px;
+    height: 20px;
+    background-color: rgb(194, 194, 194);
+    border-radius: 6px;
+    margin: 2px;
+    margin-top: 10px;
+}
+
+.shimmer-content-card-2 {
+    width: 150px;
+    height: 20px;
+    background-color: rgb(194, 194, 194);
+    border-radius: 6px;
+    margin: 2px;
+    margin-top: 10px;
+}
